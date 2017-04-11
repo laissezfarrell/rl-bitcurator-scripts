@@ -2,7 +2,7 @@
 Some scripts (bash, python) developed to automate processes
 
 **simgen_prod.sh** 
-- works on ISO and E01 disk image files
+- works with image files feat. ISO and E01 extensions
 - works with disk images featuring an ISO9660 filesystem
 - output currently dumped to desktop
 - outputs:
