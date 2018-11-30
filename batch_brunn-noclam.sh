@@ -8,5 +8,5 @@
 #done 3< <(find $@ -maxdepth 1 -type f -print0)
 
 for D in *; do
-  brunnhilde.py -n $D ~/Desktop/brunn-out "$D"
+  brunnhilde.py -n $D ~/Desktop/brunn-out/ $D"_brunn-simple"
 done
