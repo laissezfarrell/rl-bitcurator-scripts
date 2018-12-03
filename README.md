@@ -11,7 +11,7 @@ Some resources (bash, python) developed to use in BitCurator. Simple (too simple
 
 **bash/batchmkdir.sh**
 - simply makes a directory in the administrative_metadata folder for every directory in a given directory without recursing further.
-- assumes you are following the basic dir structure for RL AIPs 
+- assumes you are following the basic dir structure for RL AIPs
 
 **bash/sha1batch.sh**
 - runs sha1deep over every subdirectory of a given directory, creating an output file at the subdirectory level in the administrative_metadata folder.
@@ -40,7 +40,6 @@ Some resources (bash, python) developed to use in BitCurator. Simple (too simple
 **be_regex/uaregex.txt**
   - starting list of regexes to run against all UA collections, looking for some types of FERPA and other sensitive data.
   - not exhaustive. Needs updating.
-
 
 ##### Deprecated or otherwise abandoned
 **bash/simgen_prod.sh** -- Should be considered deprecated at this point (December 2018). May return to this at some point
