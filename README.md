@@ -41,7 +41,7 @@ Some resources (bash, python) developed to use in BitCurator. Simple (too simple
   - starting list of regexes to run against all UA collections, looking for some types of FERPA and other sensitive data.
   - not exhaustive. Needs updating.
 
-##### Deprecated or otherwise abandoned
+### Deprecated or otherwise abandoned
 **bash/simgen_prod.sh** -- Should be considered deprecated at this point (December 2018). May return to this at some point
 - works with image files feat. ISO and E01 extensions
 - works with disk images featuring an ISO9660 filesystem
