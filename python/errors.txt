@@ -1,0 +1,18 @@
+bcadmin@ubuntu:~/rl-bitcurator-scripts/python$ python3 truncate-long-filenames.py -d ~/Desktop/test-data/ -o ~/Desktop/truncate-out-001.csv
+The full path length of this-is-a-super-long-file-and-i-know-that-its-pretty-long-but-that-is-kind-ofthe-point-need-a-few-more-charactersDATA.xml is  201
+this-is-a-super-long-file-and-i-know-that-its-pretty-long-but-that-is-kind-ofthe-point-need-a-few-more-charactersDATA
+Traceback (most recent call last):
+  File "truncate-long-filenames.py", line 66, in <module>
+    scanTriageTrunc()
+  File "truncate-long-filenames.py", line 64, in scanTriageTrunc
+    scanPath(inputDir)
+  File "truncate-long-filenames.py", line 31, in scanPath
+    renamer(pathObj)
+  File "truncate-long-filenames.py", line 39, in renamer
+    newPath = pathObj.replace(pathObj.with_name('RLRENAMED''{0:03}'.format(counter)))
+  File "/usr/lib/python3.6/pathlib.py", line 1318, in replace
+    self._accessor.replace(self, target)
+  File "/usr/lib/python3.6/pathlib.py", line 393, in wrapped
+    return strfunc(str(pathobjA), str(pathobjB), *args)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/bcadmin/Desktop/test-data/objects/folder1/sub1/sub2/subfolder3/subfolder4/this-is-a-super-long-file-and-i-know-that-its-pretty-long-but-that-is-kind-ofthe-point-need-a-few-more-charactersDATA.xml' -> '/home/bcadmin/Desktop/test-data/objects/folder1/sub1/sub2/subfolder3/subfolder4/RLRENAMED002'
+
