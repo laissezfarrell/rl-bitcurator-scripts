@@ -22,7 +22,7 @@ def scanPath(inputDir): #'inputDir' here being the variable created in selective
             #print(pathObj) #Partial Sanity check. Comment this line when before putting into production.
             numChar = len(str(pathObj))
             #print(pathObj,numChar) #Partial sanity check. Comment this line before putting into production.
-            if numChar <= 100: #change this number as needed (lower numbers for testing). Probably ~230 for NTFS.
+            if numChar <= 230: #change this number as needed (lower numbers for testing). Probably ~230 for NTFS.
                 pass
             else:
                 largeNum = numChar
