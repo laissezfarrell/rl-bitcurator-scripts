@@ -12,8 +12,8 @@ from pathlib import Path, PurePath
 import argparse, csv
 
 def scanPath(inputDir): #'inputDir' here being the variable created in selectiveTruncator below
-    #startingPath = Path(inputDir)
-    startingPath = Path('/home/bcadmin/Desktop/test-data/objects')
+    startingPath = Path(inputDir)
+    #startingPath = Path('/home/bcadmin/Desktop/test-data/objects')
     with open (csvOut, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(['path','filename','extension','length'])
