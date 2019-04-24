@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#Script (in progress) to detect filenames with long paths before transferring to NTFS volumes.
+#Script to detect filenames with long paths before transferring to NTFS volumes.
 
 #Dependencies: argparse, pathlib, python3.6 or above, csv
 
