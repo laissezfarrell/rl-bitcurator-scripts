@@ -5,5 +5,5 @@
 
 unset a i
 for dir in *; do
-    bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e facebook -e outlook -o ~/Desktop/be-out/"$dir"_beout -R $dir
+    bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o ~/Desktop/be-out/"$dir"_beout -R "$dir"
 done
