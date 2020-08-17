@@ -13,9 +13,9 @@ if args.directory:
 	global inputDir
 	inputDir = args.directory
 
-with open (csvOut, 'wb') as f:
+with open (csvOut, 'w', newline='') as f:
 	writer = csv.writer(f)
-	for path, dirs, files in os.walk(inputDir): 
+	for path, dirs, files in os.walk(inputDir):
 		for filename in files:
 			writer.writerow([path,filename])
 		#for files in os.stat(inputDir): #trying to get other info out of this
