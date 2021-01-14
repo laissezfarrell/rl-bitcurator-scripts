@@ -27,11 +27,15 @@ with open (csvOut, 'w', newline='', encoding='utf-8') as f:
 			full_path = full_path.replace('F:/repo/rub/','/nas/rubenstein_archive/')
 			#print filename
 			#add additional text entensions here
-			if '.txt' in filename or '.TXT' in filename or '.rtf' in filename or '.RTF' in filename or '.doc' in filename or '.DOC' in filename:
+			if '.txt' in filename or '.TXT' in filename or '.rtf' in filename or '.RTF' in filename or '.doc' in filename or '.DOC' in filename or '.DOCX' in filename or '.docx' in filename or '.PDF' in filename or '.pdf' in filename:
 				type = 'text'
 			#add some more common image extentions here
-			elif '.JPG' in filename or '.jpg' in filename:
+			elif '.JPG' in filename or '.jpg' in filename or '.jpeg' in filename or '.JPEG' in filename or '.PNG' in filename or '.png' in filename or '.GIF' in filename or '.gif' in filename or '.BMP' in filename or '.bmp' in filename or '.tif' in filename or '.TIF' in filename or '.TIFF' in filename or '.tiff' in filename or '.HEIC' in filename or '.heic' in filename:
 				type = 'image'
+			elif '.XLSX' in filename or '.xlsx' in filename or '.xls' in filename or '.XLS' in filename or '.accdb' in filename or '.ACCDB' in filename:
+				type = 'dataset'
+			elif '.PPTX' in filename or '.pptx' in filename or '.PPT' in filename or '.ppt' in filename:
+				type = 'interactiveResource'
 			else:
 				type = 'TYPE?'
 			#date stuff is returning too recent modified dates.....
