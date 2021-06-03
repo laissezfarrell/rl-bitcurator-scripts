@@ -12,11 +12,16 @@ def walkPath():
     startingPath = Path(inputDir) #uncomment when ready for arguments
     #csvOut = Path('/home/bcadmin/Desktop/accession-report-test.csv')
     #startingPath = Path('/home/bcadmin/Desktop/test-data/objects') #comment when ready for arguments
-    #spChild = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
+    spChild = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
     #with open (csvOut, 'w') as m:
     #    writer = csv.writer(m)
     #    writer.writerow(['path','foldersize '+ labelUnits,'Earliest Timestamp','Latest Timestamp'])
-    #    for i in spChild:
+        for i in spChild:
+            i = [y for y in spChild.iterdir() if y.isdir()] #create a list of children directories in i
+# keep going here next. Handwritten notes for the pseudocode
+
+
+
     #        operatingDirectory = Path(i)
     #        print("the next directory to process is ",operatingDirectory)#sanity check
     #        fileList = list(operatingDirectory.glob('**/*'))
@@ -42,9 +47,6 @@ def walkPath():
             #print(oldestTime)
             #print(newestTime)
     #        writer.writerow([i,folderSize,oldestTime,newestTime])
-
-
-#end of day May 15: above function calculates the size of the files in a folder, as well as the most recent and oldest date modified. Next steps: 1) add arguments back in and test function. Mostly compied/pasted writer stuff from another script, so potentially doesn't work yet.
 
 # Main body to accept arguments and call the three functions.
 parser = argparse.ArgumentParser()
