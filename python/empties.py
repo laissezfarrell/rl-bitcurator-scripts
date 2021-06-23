@@ -22,30 +22,23 @@ def findNextJob():
     #startingPath = Path(inputDir) #uncomment when ready for arguments
     startingPath = Path('/d/appraisal/UA2018-0007-sample/2003/data/objects/') #comment when ready for arguments
     csvOut = Path('/home/bcadmin/Desktop/test-data/empties-test.csv') #comment when ready for arguments       
-#    with open (csvOut, 'w') as m:
-#        writer = csv.writer(m)
-#        writer.writerow(['path','foldersize (bytes)'])    
-    jobList = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
-    for i in jobList:
-        print("The next Job to process is ",i) #sanity check
-        subDirWalk(i)
-     
-def subDirWalk(i):
-    subDirList = [y for y in i.iterdir() if i.is_dir()] #create a list of the children directories of a given parent in JobList
-    csvOut = Path('/home/bcadmin/Desktop/test-data/empties-test.csv') #comment when ready for arguments       
-    with open(csvOut, 'w') as m:
-        writeAgain = csv.writer(m)
-        writeAgain.writerow(['path','foldersize (bytes)'])
-        for d in subDirList:
-            operatingSub = Path(d)
-            print("the next sub directory to process is ",operatingSub)#sanity check
-            fileList = list(operatingSub.glob('**/*'))
-            folderSize = 0
-            for f in fileList:
-                fSizeBytes = (Path.stat(f).st_size)
-                folderSize = folderSize + fSizeBytes
-            print("The folder is ",folderSize)
-        writeAgain.writerow([operatingSub,folderSize])
+    with open (csvOut, 'w') as m:
+        writer = csv.writer(m)
+        writer.writerow(['path','foldersize (bytes)'])    
+        jobList = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
+        for i in jobList:
+            print("The next Job to process is ",i) #sanity check
+            subDirList = [y for y in i.iterdir() if i.is_dir()] #create a list of the children directories of a given parent in JobList     
+            for d in subDirList:
+                operatingSub = Path(d)
+                print("the next sub directory to process is ",operatingSub)#sanity check
+                fileList = list(operatingSub.glob('**/*'))
+                folderSize = 0
+                for f in fileList:
+                    fSizeBytes = (Path.stat(f).st_size)
+                    folderSize = folderSize + fSizeBytes
+            print("The folder ",operatingSub," is ",folderSize)
+            writer.writerow([operatingSub,folderSize])
 
 findNextJob()
 
