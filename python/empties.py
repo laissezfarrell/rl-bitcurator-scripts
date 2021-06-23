@@ -5,42 +5,61 @@
 #Dependencies: argparse, pathlib, python3.6 or above, csv, datetime
 
 # Pseudocode
-# Function 1: findNextJob
+# Function : findNextJob
 # takes startingDirectory (input by user) and makes a list of all next level subdirectories (aka jobs)
-# for each Job, calls subDirWalk
-
-# Function 2: subdirWalk
-# takes a job directory from findNextJob
+# for each Job
 # makes a list of each subdirectory of the Job
-# for each subdirectory, makes a list of all files, counts these files, and aggregates their size, writing JOB, SUB, FileCount, AggregateSize to a CSV
+# for each subdirectory, reports full path and whether it is empty or not.
 
 import argparse, csv, datetime
 from pathlib import Path, PurePath
 from datetime import datetime
 
 def findNextJob():
-    #startingPath = Path(inputDir) #uncomment when ready for arguments
-    startingPath = Path('/d/appraisal/UA2018-0007-sample/2003/data/objects/') #comment when ready for arguments
-    csvOut = Path('/home/bcadmin/Desktop/test-data/empties-test.csv') #comment when ready for arguments       
+    startingPath = Path(inputDir) #uncomment when ready for arguments
+    #startingPath = Path('/d/appraisal/UA2018-0007-sample/2003/data/objects/') #comment when ready for arguments
+    #csvOut = Path('/home/bcadmin/Desktop/test-data/empties-test.csv') #comment when ready for arguments       
     with open (csvOut, 'w') as m:
         writer = csv.writer(m)
-        writer.writerow(['path','foldersize (bytes)'])    
+        writer.writerow(['path','Is the folder empty?'])    
         jobList = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
         for i in jobList:
-            print("The next Job to process is ",i) #sanity check
+            #print("The next Job to process is ",i) #sanity check
             subDirList = [y for y in i.iterdir() if i.is_dir()] #create a list of the children directories of a given parent in JobList     
             for d in subDirList:
-                operatingSub = Path(d)
-                print("the next sub directory to process is ",operatingSub)#sanity check
-                fileList = list(operatingSub.glob('**/*'))
-                folderSize = 0
-                for f in fileList:
-                    fSizeBytes = (Path.stat(f).st_size)
-                    folderSize = folderSize + fSizeBytes
-            print("The folder ",operatingSub," is ",folderSize)
-            writer.writerow([operatingSub,folderSize])
+                operatingSub = d
+                if Path(d).is_dir() == True:
+                    #print("the next sub directory to process is ",operatingSub)#sanity check
+                    if any(Path(operatingSub).iterdir()) == True:
+                        folder="not empty"
+                        #print("The ",operatingSub," is not empty!")#sanitycheck
+                        writer.writerow([operatingSub,folder])
+                    elif any(Path(operatingSub).iterdir()) == False:
+                        folder="empty"
+                        #print("The ",operatingSub," is empty!")#sanitycheck
+                        writer.writerow([operatingSub,folder])                        
+                    else:
+                        folder="unknown, you should probably investigate further"
+                        #print("Something is odd with ",operatingSub) #sanitycheck
+                        writer.writerow([operatingSub,folder])
+                else:
+                    pass
+
+# Main body to accept arguments and the function.
+parser = argparse.ArgumentParser()
+parser.add_argument("output", help="Path to and filename for the CSV to create.")
+parser.add_argument("input", help="Path to input directory.")
+
+args = parser.parse_args()
+
+if args.output:
+    csvOut = args.output
+if args.input:
+    inputDir = args.input
 
 findNextJob()
+
+#2021-06-23 end of day: seems to work. Need to add argument stuff
 
 #2021-06-23 midday 3: making the below edits results in a script tha truns and produces an output that is expected (multiple lines). Problems:, 1) I think it's only reporting directories that are full, not doing anything with empty directories, and 2) it sometimes reports out abuot individual files (.jpgs) and reports those as empty. Committing this file for versioning, but am returning to the drawing board...trying to iterate down to the lowest level and then detect whether a file is full or empty.
 
