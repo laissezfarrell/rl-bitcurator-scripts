@@ -42,6 +42,8 @@ def findNextJob():
 
 findNextJob()
 
+#2021-06-23 midday 3: making the below edits results in a script tha truns and produces an output that is expected (multiple lines). Problems:, 1) I think it's only reporting directories that are full, not doing anything with empty directories, and 2) it sometimes reports out abuot individual files (.jpgs) and reports those as empty. Committing this file for versioning, but am returning to the drawing board...trying to iterate down to the lowest level and then detect whether a file is full or empty.
+
 #2021-06-23 midday2: moving all writing to second function at least creates the column labels, but still only includes 2 lines of output (the labels, the last piece of data). Consider moving all of this into one function, since I believe the second function, called by the first, overwrites itself each time. Committing this version so I can pull it back if needed.
 
 #2021-06-23 midday: followed my leads from the end of day note below, and resulted in code that at least runs without error. Problem is, it overwrites itself in the CSV output, so the result is a one-line CSV only reporting the last directory's size. It's also writing over the column labels, which I think is because i'm calling the method twice (once in each function). Editing that out for now, and moving all writing activity to the second function
