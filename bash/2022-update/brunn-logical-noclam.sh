@@ -5,5 +5,5 @@
 
 
 for D in *; do
-  brunnhilde.py -n "$D" /home/reports/brunn-out/
+  brunnhilde.py -n "$D" /home/reports/brunn-out/${D// /}"_brunnout"
 done
