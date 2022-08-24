@@ -4,5 +4,5 @@
 
 
 for D in *; do
-  brunnhilde.py --hash sha1 -l "$D" /home/reports/brunn-out/
+  brunnhilde.py --hash sha1 -l "$D" /home/reports/brunn-out/${D// /}"_brunnout"
 done

@@ -6,5 +6,5 @@
 
 unset a i
 for dir in *; do
-    bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/reports/be-out/"$dir"_beout -R "$dir" -F /home/rl-bitcurator-scripts/be_regex/uaregex.txt
+    bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/reports/be-out/"$dir"_beout -R "$dir" -F /home/scripts/be_regex/uaregex.txt
 done
