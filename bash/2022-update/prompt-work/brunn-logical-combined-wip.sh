@@ -8,5 +8,5 @@ echo Where should the reports be saved?
 read OUTDIR
 echo Starting a batch operation at $STARTDIR and saving reports to $OUTDIR
 for D in $STARTDIR; do
-  brunnhilde.py --hash sha1 -l "$D" $OUTDIR
+  brunnhilde.py --hash sha1 -l "$D" $OUTDIR/${D// /}"_brunnout"
 done
