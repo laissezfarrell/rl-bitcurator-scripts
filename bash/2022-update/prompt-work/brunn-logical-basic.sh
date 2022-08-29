@@ -7,7 +7,7 @@ read STARTDIR
 echo Where should the reports be saved?
 read OUTDIR
 echo Starting a batch operation at $STARTDIR and saving reports to $OUTDIR
-for D in $STARTDIR; 
-  echo $D
-  #brunnhilde.py --hash sha1 -l "$D" $OUTDIR/${D// /}"_brunnout"
+for D in $STARTDIR/*; do
+  #echo $(basename ${D// /})
+  brunnhilde.py --hash sha1 -l "$D" $OUTDIR/$(basename ${D// /})"_brunnout"
 done
