@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Very basic shell script to prompt a user for a starting directory, and then run brunnhilde.py over every immediat child directory, without recursing.
+# Very basic shell script to prompt a user for a starting directory, some other information, and then run Brunnhilde as directed.
 
 echo What is the directory from which to start?
 read STARTDIR
