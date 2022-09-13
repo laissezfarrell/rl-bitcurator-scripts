@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-#Script (in progress) to report empty directories in an accession from Duke Photography
+#Script (in progress) to report empty directories in an accession from Duke Photography.
 
 #Dependencies: argparse, pathlib, python3.6 or above, csv, datetime
 
 # Pseudocode
 # Function : findNextJob
-# takes startingDirectory (input by user) and makes a list of all next level subdirectories (aka jobs)
+# takes startingDirectory (input by user) and makes a list of all next level subdirectories (aka jobs). In other words, it does not recurse further down the file tree.
 # for each Job
 # makes a list of each subdirectory of the Job
 # for each subdirectory, reports full path and whether it is empty or not.
