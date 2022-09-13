@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import os
+import os, argparse
+from pathlib import Path, PurePath
 def main():
     
-    dirName = '/d/new-acquisition/saf_accession/objects'; #edit this until I add variable prompt
+    dirName = inputDir;
     
     '''
         Get a list of empty directories in a directory tree
@@ -28,6 +29,13 @@ def main():
         print(elem)  
         
         
+parser = argparse.ArgumentParser()
+parser.add_argument("input", help="Path to input directory.")
+
+args = parser.parse_args()
+
+if args.input:
+    inputDir = args.input
         
 if __name__ == '__main__':
     main()
