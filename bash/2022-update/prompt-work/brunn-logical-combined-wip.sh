@@ -28,7 +28,7 @@ elif [ "$MODEL" == "image" ]
 then
   #mkdir $STARTDIR/use-copies #uncomment once we add rename to dockerfile
   for file in $STARTDIR/*; do
-    brunnhilde.py --hash sha1 -l -d -n "$file" $OUTDIR/$(basename ${file// /})"_brunnout"
+    brunnhilde.py --hash sha1 -l -d "$file" $OUTDIR/$(basename ${file// /})"_brunnout"
   done
   find $OUTDIR -type d -name "carved_files" -printf "/%P\n" | while read CARVE ; do DIR=$(dirname "$CARVE" );mv "$OUTDIR""$CARVE" "$OUTDIR""$DIR""$DIR"_export;done
   #find $OUTDIR -type d -name "*_brunnout_export" | rename 's/_brunnout_export/_files/g' #uncomment when we add rename to dockerfile
