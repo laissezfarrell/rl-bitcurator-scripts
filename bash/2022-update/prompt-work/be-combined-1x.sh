@@ -29,7 +29,7 @@ elif [ "$MODEL" == "image" ]
 then
     if [ "$REGEX" == "none" ]
     then
-        while IFS= read -r -u3 -d $'\0' file; do
+        while IFS= read -r -u3 -d $'\0' file; do #fix this! This appears to call bulk-extractor from the working directory of the .sh file rather than the STARTDIR
         bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o $OUTDIR/"$file"_beout/ "$file"
         done 3< <(find $@ -maxdepth 1 -type f -print0)
     elif [ "$REGEX" == "ua" ]
