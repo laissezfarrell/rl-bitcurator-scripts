@@ -27,19 +27,19 @@ then
     done
 elif [ "$MODEL" == "image" ]
 then
-    if [ "$REGEX" == "none" ]
-    then
-        while IFS= read -r -u3 -d $'\0' file; do #fix this! This appears to call bulk-extractor from the working directory of the .sh file rather than the STARTDIR
-        bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o $OUTDIR/"$file"_beout/ "$file"
-        done 3< <(find $@ -maxdepth 1 -type f -print0)
-    elif [ "$REGEX" == "ua" ]
-    then
-        while IFS= read -r -u3 -d $'\0' file; do
-        bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o $OUTDIR/"$file"_beout/ "$file" -F /home/bcadmin/rl-bitcurator-scripts/be_regex/uaregex.txt #this regex location assumes the script is running on one of the RLVM BitCurator instances. 
-        done 3< <(find $@ -maxdepth 1 -type f -print0)
-    else
-        echo "Regex input not valid."
-    fi
+    for file in $STARTDIR/*; do
+        if [ "$REGEX" == "none" ]
+        then
+            #while IFS= read -r -u3 -d $'\0' file; do #fix this! This appears to call bulk-extractor from the working directory of the .sh file rather than the STARTDIR
+            bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o $OUTDIR/"$file"_beout/ "$file"
+        elif [ "$REGEX" == "ua" ]
+        then
+            # while IFS= read -r -u3 -d $'\0' file; do
+            bulk_extractor -S ssn_mode=1 -S jpeg_carve_mode=0 -S unzip_carve_mode=0 -S unrar_carve_mode=0 -S winpe_carve_mode=0 -e outlook -o $OUTDIR/"$file"_beout/ "$file" -F /home/bcadmin/rl-bitcurator-scripts/be_regex/uaregex.txt #this regex location assumes the script is running on one of the RLVM BitCurator instances. 
+        else
+            echo "Regex input not valid."
+        fi
+    done
 else
       echo "Model input not valid."
 fi
