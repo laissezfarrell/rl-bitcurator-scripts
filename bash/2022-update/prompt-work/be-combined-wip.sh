@@ -17,10 +17,10 @@ then
     for dir in $STARTDIR/*; do
         if [ "$REGEX" == "none" ]
         then
-            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/"$dir"_beout -R "$dir"
+            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/$(basename ${dir// /})"_beout" -R "$dir"
         elif [ "$REGEX" == "ua" ]
         then
-            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/"$dir"_beout -R "$dir" -F /home/scripts/be_regex/uaregex.txt
+            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/$(basename ${dir// /})"_beout" -R "$dir" -F /home/scripts/be_regex/uaregex.txt
         else
             echo "Regex input not valid."
         fi
