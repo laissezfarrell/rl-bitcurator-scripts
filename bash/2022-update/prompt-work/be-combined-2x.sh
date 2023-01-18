@@ -27,19 +27,21 @@ then
     done
 elif [ "$MODEL" == "image" ]
 then
-    if [ "$REGEX" == "none" ]
-    then
-        while IFS= read -r -u3 -d $'\0' file; do
-        bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/reports/be-out/"$file"_beout/ "$file"
-        done 3< <(find $@ -maxdepth 1 -type f -print0)
-    elif [ "$REGEX" == "ua" ]
-    then
-        while IFS= read -r -u3 -d $'\0' file; do
-        bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o /home/reports/be-out/"$file"_beout/ "$file" -F /home/scripts/be_regex/uaregex.txt
-        done 3< <(find $@ -maxdepth 1 -type f -print0)
-    else
-        echo "Regex input not valid."
-    fi
+    for file in $STARTDIR/*; do
+        if [ "$REGEX" == "none" ]
+        then
+            #while IFS= read -r -u3 -d $'\0' file; do
+            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/$(basename ${file// /})"_beout" "$file"
+            #done 3< <(find $@ -maxdepth 1 -type f -print0)
+        elif [ "$REGEX" == "ua" ]
+        then
+            #while IFS= read -r -u3 -d $'\0' file; do
+            bulk_extractor -S ssn_mode=1 -e outlook -x zip -x rar -x winpe -x exif -o $OUTDIR/$(basename ${file// /})"_beout" "$file" -F /home/scripts/be_regex/uaregex.txt
+            #done 3< <(find $@ -maxdepth 1 -type f -print0)
+        else
+            echo "Regex input not valid."
+        fi
+    done
 else
       echo "Model input not valid."
 fi
