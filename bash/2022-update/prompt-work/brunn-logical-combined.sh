@@ -26,13 +26,13 @@ then
   done  
 elif [ "$MODEL" == "image" ]
 then
-  #mkdir $STARTDIR/use-copies #uncomment once we add rename to dockerfile
+  mkdir $STARTDIR/use-copies #uncomment and test once we add rename to dockerfile
   for file in $STARTDIR/*; do
     brunnhilde.py --hash sha1 -l -d "$file" $OUTDIR/$(basename ${file// /})"_brunnout"
   done
   find $OUTDIR -type d -name "carved_files" -printf "/%P\n" | while read CARVE ; do DIR=$(dirname "$CARVE" );mv "$OUTDIR""$CARVE" "$OUTDIR""$DIR""$DIR"_export;done
-  #find $OUTDIR -type d -name "*_brunnout_export" | rename 's/_brunnout_export/_files/g' #uncomment when we add rename to dockerfile
-  #mv $OUTDIR/*/*_files/ $STARTDIR/use-copies/ #uncomment when we add rename to dockerfile
+  find $OUTDIR -type d -name "*_brunnout_export" | rename 's/_brunnout_export/_files/g' #uncomment and test when we add rename to dockerfile
+  mv $OUTDIR/*/*_files/ $STARTDIR/use-copies/ #uncomment and test when we add rename to dockerfile
 else 
   echo "Model input is not valid. Answer image or logical next time."
 fi
