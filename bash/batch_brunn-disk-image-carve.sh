@@ -8,5 +8,5 @@
 #done 3< <(find $@ -maxdepth 1 -type f -print0)
 
 for file in *; do
-  brunnhilde.py --hash sha1 -l -d "$file" ~/Desktop/brunn-out ${file// /}"_brunnout"
+  brunnhilde.py --hash sha1 -l -d -a "$file" ~/Desktop/brunn-out ${file// /}"_brunnout"
 done
