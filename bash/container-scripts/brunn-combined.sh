@@ -29,10 +29,11 @@ then
   for file in $STARTDIR/*; do
     brunnhilde.py --hash sha1 -l -d "$file" $OUTDIR/$(basename ${file// /})"_brunnout"
   done
-  mkdir $STARTDIR/use_copies
+  PARENTDIR="$(dirname "$STARTDIR")"
+  mkdir $PARENTDIR/use_copies
   find $OUTDIR -type d -name "carved_files" -printf "/%P\n" | while read CARVE ; do DIR=$(dirname "$CARVE" );mv "$OUTDIR""$CARVE" "$OUTDIR""$DIR""$DIR"_export;done
   find $OUTDIR -type d -name "*_brunnout_export" | rename 's/_brunnout_export/_files/g'
-  mv $OUTDIR/*/*_files/ $STARTDIR/use_copies/ 
+  mv $OUTDIR/*/*_files/ $PARENTDIR/use_copies/
 else 
   echo "Model input is not valid. Answer image or logical next time."
 fi
