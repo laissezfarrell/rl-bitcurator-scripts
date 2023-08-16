@@ -16,7 +16,7 @@ def walkPath():
     #csvOut = Path('/home/bcadmin/Desktop/accession-report-test.csv')
     #startingPath = Path('/home/bcadmin/Desktop/test-data/objects') #comment when ready for arguments
     spChild = [x for x in startingPath.iterdir() if x.is_dir()] #create a list of the children directories in startingPath.
-    with open (csvOut, 'w') as m:
+    with open (csvOut, 'w', newline='', encoding='utf-8') as m:
         writer = csv.writer(m)
         writer.writerow(['path'])
         for i in spChild:
