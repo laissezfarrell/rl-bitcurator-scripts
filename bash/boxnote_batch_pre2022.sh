@@ -8,10 +8,5 @@ echo What is your input directory?
 read INDIR
 IFS=$'\n'
 for file in $INDIR/*.boxnote; do
-    cd /media/data/shared-user-files/boxnote-converter/
-    poetry run python boxnote-converter/docx_parser.py $file -d $INDIR -o $file"_converted"
+    boxnotes2html $file
 done
-
-#this works for "new style" boxnotes (August 2022-present). Though the docx conversion breaks when there is supposed to be an image included. The HTML conversion is created, but the image is not included.
-
-#it breaks on "old style" boxnotes.
